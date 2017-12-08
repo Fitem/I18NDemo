@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ความเป็นสากล</string>
+    <string name="title">ความเป็นสากล</string>
+    <string name="content_des">นี่คือตัวอย่างความเป็นสากลของแอป!</string>
+    <string name="select_language">เลือกภาษา</string>
+    <string name="defualt_language">ภาษาดั้งเดิม</string>
+    <string name="english">ภาษาอังกฤษ</string>
+    <string name="chinese">ภาษาจีน</string>
+    <string name="please_select_app_language">กรุณาเลือกภาษาของแอป</string>
+    <string name="thai">ภาษาไทย</string>
+</resources>

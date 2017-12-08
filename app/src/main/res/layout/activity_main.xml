@@ -1,18 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.fitem.i18ndemo.MainActivity">
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_height="match_parent">
 
     <TextView
+        android:text="@string/title"
+        android:textColor="#8149f0"
+        android:textSize="22sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+       />
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:text="@string/content_des"
+        android:layout_marginTop="20dp"
+        android:textColor="#ec5151"
+        android:textSize="14sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_select_language"
+        android:text="@string/select_language"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:background="#2c8ff2"
+        android:layout_marginTop="50dp"
+        android:textSize="14sp"
+        android:layout_width="@dimen/activity_main_select_tv_width"
+        android:layout_height="@dimen/activity_main_select_tv_height" />
+</LinearLayout>

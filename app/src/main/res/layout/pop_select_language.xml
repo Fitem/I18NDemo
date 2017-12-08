@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="287dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:clickable="true"
+        android:background="@drawable/pop_bg"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:gravity="center"
+            android:text="@string/please_select_app_language"
+            android:textSize="18sp"
+            android:textColor="#ffffff"
+            android:background="@drawable/pop_title_bg"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+        <TextView
+            android:id="@+id/tv_default_language"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textColor="#f13b3b"
+            android:text="@string/defualt_language"
+            android:layout_width="match_parent"
+            android:layout_height="60dp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="#5b5353"/>
+
+        <TextView
+            android:id="@+id/tv_english"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textColor="#f13b3b"
+            android:text="@string/english"
+            android:layout_width="match_parent"
+            android:layout_height="60dp" />
+
+         <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="#5b5353"/>
+
+        <TextView
+            android:id="@+id/tv_chinese"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textColor="#f13b3b"
+            android:text="@string/chinese"
+            android:layout_width="match_parent"
+            android:layout_height="60dp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="#5b5353"/>
+
+        <TextView
+            android:id="@+id/tv_thai"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textColor="#f13b3b"
+            android:text="@string/thai"
+            android:layout_width="match_parent"
+            android:layout_height="60dp" />
+
+    </LinearLayout>
+</RelativeLayout>

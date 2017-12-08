@@ -21,3 +21,12 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext{
+    // Rx全家桶
+    rxjavaVersion = '1.0.1'
+    rxandroidVersion = '1.0.1'
+    rxbindingVersion = '1.0.1'
+    // butterknife
+    butterknifeVersion = '8.6.0'
+}

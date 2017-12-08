@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">国际化Demo</string>
+    <string name="title">国际化</string>
+    <string name="content_des">这是一个国际化应用demo！</string>
+    <string name="select_language">选择语言</string>
+    <string name="defualt_language">默认语言</string>
+    <string name="english">英语</string>
+    <string name="chinese">中文</string>
+    <string name="please_select_app_language">请选择app语言</string>
+    <string name="thai">泰语</string>
+</resources>
