@@ -1,14 +1,10 @@
 package com.fitem.i18ndemo.base.ui;
 
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.LocaleList;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 
@@ -62,17 +58,6 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
     public RxManager mRxManager;
     private long loadStartTime;
 
-    private BroadcastReceiver localeChangedReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (Intent.ACTION_LOCALE_CHANGED.equals(intent.getAction())) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    I18NUtils.setSystemLocaleList(LocaleList.getDefault());
-                }
-            }
-        }
-    };
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,16 +84,13 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
         AppManager.getAppManager().addActivity(this);
         this.initPresenter();
         this.initView();
-
-        this.registerReceiver(localeChangedReceiver,
-                new IntentFilter(Intent.ACTION_LOCALE_CHANGED));
     }
 
     /**
      * 设置
      */
     private void setLocale() {
-        if(I18NUtils.isSameLanguage(this)) {
+        if(!I18NUtils.isSameLanguage(this)) {
             I18NUtils.setLocale(this);
         }
     }
@@ -211,6 +193,5 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
             mPresenter.onDestroy();
         mRxManager.clear();
         AppManager.getAppManager().removeActivity(this);
-        unregisterReceiver(localeChangedReceiver);
     }
 }
