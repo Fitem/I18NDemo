@@ -104,6 +104,10 @@ public class MainActivity extends BaseActivity {
     }
 
     private void toSetLanguage(int type) {
+        I18NUtils.putLanguageType(this, type);
+        if(I18NUtils.isSameLanguage(this, type)) {
+         return;
+        }
         I18NUtils.setLocale(this, type);
         toRestartMainActvity();
     }
