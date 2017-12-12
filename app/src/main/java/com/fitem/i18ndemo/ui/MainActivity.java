@@ -10,7 +10,7 @@ import android.widget.PopupWindow;
 import com.fitem.i18ndemo.R;
 import com.fitem.i18ndemo.base.BaseActivity;
 import com.fitem.i18ndemo.utils.I18NUtils;
-import com.fitem.i18ndemo.widget.pop.PopUtils;
+import com.fitem.i18ndemo.utils.PopUtils;
 
 import butterknife.OnClick;
 

@@ -1,4 +1,4 @@
-package com.fitem.i18ndemo.widget.pop;
+package com.fitem.i18ndemo.utils;
 
 import android.app.Activity;
 import android.view.WindowManager;
