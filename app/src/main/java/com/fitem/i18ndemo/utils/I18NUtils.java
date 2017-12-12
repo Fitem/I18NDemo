@@ -139,7 +139,7 @@ public class I18NUtils {
         Intent intent = new Intent(activity, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         activity.startActivity(intent);
-        // 杀掉进程
+        // 杀掉进程，如果是跨进程则杀掉当前进程
 //        android.os.Process.killProcess(android.os.Process.myPid());
 //        System.exit(0);
     }
