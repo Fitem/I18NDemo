@@ -74,8 +74,8 @@ locale = Locale.getDefault();
 ```
 ## 总结
 
-自此，多语言切换的问题已经完美解决了。经测试，完全兼容7.0以上系统的多语言切换。
+自此，多语言切换的问题已经完美解决了。经测试，完全兼容7.0以上系统的多语言切换。具体代码我已上传至[Github](https://github.com/Fitem/I18NDemo/)
 
-我的简书:http://www.jianshu.com/p/16efe98d4554/)
+简书地址:http://www.jianshu.com/p/16efe98d4554/)
 
 E-mail:931675174@qq.com
