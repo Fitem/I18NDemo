@@ -11,7 +11,7 @@ import android.os.LocaleList;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
-import com.fitem.i18ndemo.base.app.AppConstants;
+import com.fitem.i18ndemo.base.AppConstants;
 import com.fitem.i18ndemo.ui.MainActivity;
 
 import java.util.Locale;
@@ -41,7 +41,7 @@ public class I18NUtils {
     }
 
     /**
-     * 获取locale
+     * 根据type获取locale
      *
      * @param type
      * @return
@@ -82,11 +82,22 @@ public class I18NUtils {
         setLocale(context, type);
     }
 
+    /**
+     * 判断是否是相同语言
+     * @param context
+     * @return
+     */
     public static boolean isSameLanguage(Context context) {
         int type = getLanguageType(context);
         return isSameLanguage(context, type);
     }
 
+    /**
+     * 判断是否是相同语言
+     * @param context
+     * @param type
+     * @return
+     */
     public static boolean isSameLanguage(Context context, int type) {
         Locale locale = getLocaleByType(type);
         Locale appLocale = context.getResources().getConfiguration().locale;
@@ -120,6 +131,10 @@ public class I18NUtils {
         return type;
     }
 
+    /**
+     * 跳转主页
+     * @param activity
+     */
     public static void toRestartMainActvity(Activity activity) {
         Intent intent = new Intent(activity, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

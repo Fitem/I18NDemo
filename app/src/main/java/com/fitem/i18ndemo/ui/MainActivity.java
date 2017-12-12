@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.PopupWindow;
 
 import com.fitem.i18ndemo.R;
-import com.fitem.i18ndemo.base.ui.BaseActivity;
+import com.fitem.i18ndemo.base.BaseActivity;
 import com.fitem.i18ndemo.utils.I18NUtils;
 import com.fitem.i18ndemo.widget.pop.PopUtils;
 
@@ -26,11 +26,6 @@ public class MainActivity extends BaseActivity {
     @Override
     public int getLayoutId() {
         return R.layout.activity_main;
-    }
-
-    @Override
-    public void initPresenter() {
-
     }
 
     @Override

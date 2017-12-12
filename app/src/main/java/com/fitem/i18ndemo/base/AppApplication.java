@@ -1,4 +1,4 @@
-package com.fitem.i18ndemo.base.app;
+package com.fitem.i18ndemo.base;
 
 import android.app.Application;
 
