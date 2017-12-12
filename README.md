@@ -37,32 +37,32 @@ locale = thLocale;
 break;
 }
 ```
-4.在AppApplication中初始化时设置本地语言，用于每次启动APP后选择本地缓存的语言
+4.在AppApplication中初始化时设置本地语言，用于每次启动APP后切换到本地缓存的语言
 
     //  设置本地化语言
     I18NUtils.setLocale(this);
     
-5.在BaseActivity的OnCreate()方法中设置语言，用于每次切换系统语言后app语言会跟随系统变化的问题
+5.在BaseActivity的OnCreate()方法中设置语言，用于处理每次切换系统语言后app语言会跟随系统变化的问题
 
     if(!I18NUtils.isSameLanguage(this)) {
         I18NUtils.setLocale(this);
         I18NUtils.toRestartMainActvity(this);
     }
     
-6.切换语言时，先更新locale配置，然后通过跳转到主Activity时间
+6.手动切换语言时，先更新locale配置，然后通过跳转到主Activity实现。Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK通过清理掉进程中的所有activity重新配置。
 
     Intent intent = new Intent(activity, MainActivity.class);
     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
     activity.startActivity(intent);
-    // 杀掉进程
+    // 杀掉进程，如果是跨进程则杀掉当前进程
     //  android.os.Process.killProcess(android.os.Process.myPid());
     //  System.exit(0);
 
 ## 解决7.0以上系统存在的兼容问题
 
-这个问题的解决参考了[Android 7.0 语言设置爬坑](http://www.jianshu.com/p/9a304c2047ff/)。由于Android7.0以上Configuration将通过LocaleList来管理语言，并且系统切换语言后，系统默认语言可能并不在顶部[官方API说明](https://developer.android.com/reference/android/os/LocaleList.html#getDefault()/)
+这个问题的解决参考了[Android 7.0 语言设置爬坑](http://www.jianshu.com/p/9a304c2047ff/)。由于Android7.0以上Configuration将通过LocaleList来管理语言，并且系统切换语言后，系统默认语言可能并不在LocaleList顶部[官方API说明](https://developer.android.com/reference/android/os/LocaleList.html#getDefault()/)
 
-所以通过 localeList.get(localeList.size() - 1)获取系统locale,代码如下：
+所以通过 localeList.get(localeList.size() - 1)获取当前系统locale,代码如下：
 ```
 //由于API仅支持7.0，需要判断，否则程序会crash(解决7.0以上系统不能跟随系统语言问题)
 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -76,6 +76,6 @@ locale = Locale.getDefault();
 
 自此，多语言切换的问题已经完美解决了。经测试，完全兼容7.0以上系统的多语言切换。具体代码我已上传至[Github](https://github.com/Fitem/I18NDemo/)
 
-简书地址:http://www.jianshu.com/p/16efe98d4554/)
+我的简书:http://www.jianshu.com/p/16efe98d4554/)
 
 E-mail:931675174@qq.com
