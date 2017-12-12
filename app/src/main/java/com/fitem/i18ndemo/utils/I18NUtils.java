@@ -24,14 +24,6 @@ public class I18NUtils {
 
     private static final String TAG = "I18NUtils";
     private static Locale thLocale = new Locale("th");
-    private static LocaleList sLocaleList;
-
-    static {
-        //由于API仅支持7.0，需要判断，否则程序会crash
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            sLocaleList = LocaleList.getDefault();
-        }
-    }
 
     /**
      * 设置本地化语言
@@ -44,12 +36,13 @@ public class I18NUtils {
         DisplayMetrics dm = resources.getDisplayMetrics();
         Configuration config = resources.getConfiguration();
         config.locale = getLocaleByType(type);
-        Log.d(TAG, "setLocale: " + config.locale.getLanguage() + " - " + config.locale.getCountry());
+        Log.d(TAG, "setLocale: " + config.locale.toString());
         resources.updateConfiguration(config, dm);
     }
 
     /**
      * 获取locale
+     *
      * @param type
      * @return
      */
@@ -60,7 +53,8 @@ public class I18NUtils {
             case 0:
                 //由于API仅支持7.0，需要判断，否则程序会crash(解决7.0以上系统不能跟随系统语言问题)
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    locale = sLocaleList.get(0);
+                    LocaleList localeList = LocaleList.getDefault();
+                    locale = localeList.get(localeList.size() - 1);
                 } else {
                     locale = Locale.getDefault();
                 }
@@ -96,7 +90,9 @@ public class I18NUtils {
     public static boolean isSameLanguage(Context context, int type) {
         Locale locale = getLocaleByType(type);
         Locale appLocale = context.getResources().getConfiguration().locale;
-        return appLocale.equals(locale);
+        boolean equals = appLocale.equals(locale);
+        Log.d(TAG, "isSameLanguage: " + locale.toString() + " / " + appLocale.toString() + " / " + equals);
+        return equals;
     }
 
     /**
@@ -122,10 +118,6 @@ public class I18NUtils {
         SharedPreferences sp = context.getSharedPreferences(AppConstants.I18N, Context.MODE_PRIVATE);
         int type = sp.getInt(AppConstants.LOCALE_LANGUAGE, 0);
         return type;
-    }
-
-    public static void setSystemLocaleList(LocaleList systemLocaleList) {
-        sLocaleList = systemLocaleList;
     }
 
     public static void toRestartMainActvity(Activity activity) {
