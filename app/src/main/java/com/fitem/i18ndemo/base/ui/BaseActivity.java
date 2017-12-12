@@ -92,9 +92,9 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
     private void setLocale() {
         if(!I18NUtils.isSameLanguage(this)) {
             I18NUtils.setLocale(this);
+            I18NUtils.toRestartMainActvity(this);
         }
     }
-
 
     /**
      * 设置layout前配置

@@ -1,6 +1,8 @@
 package com.fitem.i18ndemo.utils;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -10,6 +12,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 
 import com.fitem.i18ndemo.base.app.AppConstants;
+import com.fitem.i18ndemo.ui.MainActivity;
 
 import java.util.Locale;
 
@@ -37,7 +40,6 @@ public class I18NUtils {
      * @param type
      */
     public static void setLocale(Context context, int type) {
-        putLanguageType(context, type);
         Resources resources = context.getResources();
         DisplayMetrics dm = resources.getDisplayMetrics();
         Configuration config = resources.getConfiguration();
@@ -124,5 +126,14 @@ public class I18NUtils {
 
     public static void setSystemLocaleList(LocaleList systemLocaleList) {
         sLocaleList = systemLocaleList;
+    }
+
+    public static void toRestartMainActvity(Activity activity) {
+        Intent intent = new Intent(activity, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        activity.startActivity(intent);
+        // 杀掉进程
+//        android.os.Process.killProcess(android.os.Process.myPid());
+//        System.exit(0);
     }
 }

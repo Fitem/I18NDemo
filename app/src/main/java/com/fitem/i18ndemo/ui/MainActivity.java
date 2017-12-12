@@ -1,6 +1,5 @@
 package com.fitem.i18ndemo.ui;
 
-import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -105,19 +104,11 @@ public class MainActivity extends BaseActivity {
 
     private void toSetLanguage(int type) {
         I18NUtils.putLanguageType(this, type);
-        if(I18NUtils.isSameLanguage(this, type)) {
-         return;
+        if (I18NUtils.isSameLanguage(this, type)) {
+            return;
         }
         I18NUtils.setLocale(this, type);
-        toRestartMainActvity();
+        I18NUtils.toRestartMainActvity(this);
     }
 
-    private void toRestartMainActvity() {
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
-        // 杀掉进程
-//        android.os.Process.killProcess(android.os.Process.myPid());
-//        System.exit(0);
-    }
 }
