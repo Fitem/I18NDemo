@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.LocaleList;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.webkit.WebView;
 
 import com.fitem.i18ndemo.base.AppConstants;
 import com.fitem.i18ndemo.ui.MainActivity;
@@ -32,6 +33,9 @@ public class I18NUtils {
      * @param type
      */
     public static void setLocale(Context context, int type) {
+        // 解决webview所在的activity语言没有切换问题
+        new WebView(context).destroy();
+        // 切换语言
         Resources resources = context.getResources();
         DisplayMetrics dm = resources.getDisplayMetrics();
         Configuration config = resources.getConfiguration();

@@ -72,6 +72,22 @@ locale = localeList.get(localeList.size() - 1);
 locale = Locale.getDefault();
 }
 ```
+
+## 7.0以上系统WebView所在Activity没有跟随语言切换问题
+更新日期：2017年12月14日15:56:47
+
+在后续的测试发现，在有webView的activitiy中语言并没有随着语言进行切换。参考[多语言切换失效的问题](http://blog.csdn.net/xunmeng_93/article/details/78632210)以及[stackoverflow](https://stackoverflow.com/questions/40398528/android-webview-language-changes-abruptly-on-android-n)后，通过在切换语言之前执行new WebView(context).destroy(）解决。代码：
+
+    // 解决webview所在的activity语言没有切换问题
+    new WebView(context).destroy();
+    // 切换语言
+    Resources resources = context.getResources();
+    DisplayMetrics dm = resources.getDisplayMetrics();
+    Configuration config = resources.getConfiguration();
+    config.locale = getLocaleByType(type);
+    LogUtils.logd("setLocale: " + config.locale.toString());
+    resources.updateConfiguration(config, dm);
+
 ## 总结
 
 自此，多语言切换的问题已经完美解决了。经测试，完全兼容7.0以上系统的多语言切换。具体代码我已上传至[Github](https://github.com/Fitem/I18NDemo/)
