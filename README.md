@@ -62,12 +62,18 @@ break;
 
 这个问题的解决参考了[Android 7.0 语言设置爬坑](http://www.jianshu.com/p/9a304c2047ff/)。由于Android7.0以上Configuration将通过LocaleList来管理语言，并且系统切换语言后，系统默认语言可能并不在LocaleList顶部[官方API说明](https://developer.android.com/reference/android/os/LocaleList.html#getDefault()/)
 
-所以通过 localeList.get(localeList.size() - 1)获取当前系统locale,代码如下：
+进测试得出结论，如果APP手动选择过语言则系统语言是第二个，否则是第一个。获取当前系统locale,代码如下：
 ```
 //由于API仅支持7.0，需要判断，否则程序会crash(解决7.0以上系统不能跟随系统语言问题)
 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-LocaleList localeList = LocaleList.getDefault();
-locale = localeList.get(localeList.size() - 1);
+ LocaleList localeList = LocaleList.getDefault();
+int spType = getLanguageType(AppApplication.getAppContext());
+// 如果app已选择不跟随系统语言，则取第二个数据为系统默认语言
+if(spType != 0 && localeList.size() > 1) {
+    locale = localeList.get(1);
+    } else {
+        locale = localeList.get(0);
+    }
 } else {
 locale = Locale.getDefault();
 }

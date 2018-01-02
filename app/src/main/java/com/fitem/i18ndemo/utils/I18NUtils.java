@@ -12,6 +12,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.webkit.WebView;
 
+import com.fitem.i18ndemo.base.AppApplication;
 import com.fitem.i18ndemo.base.AppConstants;
 import com.fitem.i18ndemo.ui.MainActivity;
 
@@ -58,7 +59,13 @@ public class I18NUtils {
                 //由于API仅支持7.0，需要判断，否则程序会crash(解决7.0以上系统不能跟随系统语言问题)
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     LocaleList localeList = LocaleList.getDefault();
-                    locale = localeList.get(localeList.size() - 1);
+                    int spType = getLanguageType(AppApplication.getAppContext());
+                    // 如果app已选择不跟随系统语言，则取第二个数据为系统默认语言
+                    if (spType != 0 && localeList.size() > 1) {
+                        locale = localeList.get(1);
+                    } else {
+                        locale = localeList.get(0);
+                    }
                 } else {
                     locale = Locale.getDefault();
                 }
@@ -88,6 +95,7 @@ public class I18NUtils {
 
     /**
      * 判断是否是相同语言
+     *
      * @param context
      * @return
      */
@@ -98,6 +106,7 @@ public class I18NUtils {
 
     /**
      * 判断是否是相同语言
+     *
      * @param context
      * @param type
      * @return
@@ -137,6 +146,7 @@ public class I18NUtils {
 
     /**
      * 跳转主页
+     *
      * @param activity
      */
     public static void toRestartMainActvity(Activity activity) {

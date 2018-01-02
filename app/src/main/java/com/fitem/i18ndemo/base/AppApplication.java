@@ -1,6 +1,7 @@
 package com.fitem.i18ndemo.base;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.fitem.i18ndemo.utils.I18NUtils;
 
@@ -9,10 +10,17 @@ import com.fitem.i18ndemo.utils.I18NUtils;
  */
 
 public class AppApplication extends Application {
+    private static Application baseApplication;
+
     @Override
     public void onCreate() {
         super.onCreate();
+        baseApplication = this;
         //  设置本地化语言
         I18NUtils.setLocale(this);
+    }
+
+    public static Context getAppContext() {
+        return baseApplication;
     }
 }
