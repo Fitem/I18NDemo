@@ -101,6 +101,7 @@ public class MainActivity extends BaseActivity {
         boolean sameLanguage = I18NUtils.isSameLanguage(this, type);
         if (!sameLanguage) {
             I18NUtils.setLocale(this, type);
+            // 前面取系统语言时判断spType=0时取第一值，所以设置完语言后缓存type
             I18NUtils.putLanguageType(this, type);
             I18NUtils.toRestartMainActvity(this);
         } else {
