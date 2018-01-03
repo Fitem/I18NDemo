@@ -98,12 +98,15 @@ public class MainActivity extends BaseActivity {
     }
 
     private void toSetLanguage(int type) {
-        I18NUtils.putLanguageType(this, type);
-        if (I18NUtils.isSameLanguage(this, type)) {
-            return;
+        boolean sameLanguage = I18NUtils.isSameLanguage(this, type);
+        if (!sameLanguage) {
+            I18NUtils.setLocale(this, type);
+            I18NUtils.putLanguageType(this, type);
+            I18NUtils.toRestartMainActvity(this);
+        } else {
+            // 缓存用户此次选择的类型，可能出现type不同而locale一样的情况（如：系统默认泰语type = 0，而我选择的也是泰语type = 3）
+            I18NUtils.putLanguageType(this, type);
         }
-        I18NUtils.setLocale(this, type);
-        I18NUtils.toRestartMainActvity(this);
     }
 
 }
