@@ -2,14 +2,12 @@
 
 buildscript {
     repositories {
+        google()
         jcenter()
-        maven {
-            url 'https://maven.google.com/'
-            name 'Google'
-        }
+
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.android.tools.build:gradle:3.5.1'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -18,11 +16,9 @@ buildscript {
 
 allprojects {
     repositories {
+        google()
         jcenter()
-        maven {
-            url 'https://maven.google.com/'
-            name 'Google'
-        }
+
     }
 }
 
@@ -32,9 +28,9 @@ task clean(type: Delete) {
 
 ext{
     // Rx全家桶
-    rxjavaVersion = '1.0.1'
-    rxandroidVersion = '1.0.1'
-    rxbindingVersion = '1.0.1'
+    rxjavaVersion = '3.0.0'
+    rxandroidVersion = '3.0.0'
+    rxbindingVersion = '3.0.0'
     // butterknife
-    butterknifeVersion = '8.6.0'
+    butterknifeVersion = '10.2.1'
 }

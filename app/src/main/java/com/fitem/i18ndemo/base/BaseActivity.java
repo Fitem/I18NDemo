@@ -2,7 +2,8 @@ package com.fitem.i18ndemo.base;
 
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.fitem.i18ndemo.utils.I18NUtils;
 
