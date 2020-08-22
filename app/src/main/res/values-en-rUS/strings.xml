@@ -8,4 +8,6 @@
     <string name="chinese">Chinese</string>
     <string name="please_select_app_language">Please select app language</string>
     <string name="thai">thai</string>
+    <string name="activity_name">Activity Name</string>
+    <string name="application_name">Application Name</string>
 </resources>

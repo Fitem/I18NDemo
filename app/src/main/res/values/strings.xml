@@ -1,11 +1,13 @@
 <resources>
-<string name="app_name">I18NDemo</string>
-<string name="title">Internationalization</string>
-<string name="content_des">This is an internationalization app demo!</string>
-<string name="select_language">Select Language</string>
-<string name="defualt_language">Default Language</string>
-<string name="english">English</string>
-<string name="chinese">Chinese</string>
-<string name="please_select_app_language">Please select app language</string>
+    <string name="app_name">I18NDemo</string>
+    <string name="title">Internationalization</string>
+    <string name="content_des">This is an internationalization app demo!</string>
+    <string name="select_language">Select Language</string>
+    <string name="defualt_language">Default Language</string>
+    <string name="english">English</string>
+    <string name="chinese">Chinese</string>
+    <string name="please_select_app_language">Please select app language</string>
     <string name="thai">thai</string>
+    <string name="activity_name">Activity Name</string>
+    <string name="application_name">Application Name</string>
 </resources>

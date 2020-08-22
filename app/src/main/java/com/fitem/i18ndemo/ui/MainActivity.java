@@ -1,22 +1,35 @@
 package com.fitem.i18ndemo.ui;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupWindow;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fitem.i18ndemo.R;
+import com.fitem.i18ndemo.base.AppApplication;
 import com.fitem.i18ndemo.base.BaseActivity;
-import com.fitem.i18ndemo.utils.I18NUtils;
+import com.fitem.i18ndemo.utils.LanguageUtils;
 import com.fitem.i18ndemo.utils.PopUtils;
+
+import java.util.Locale;
 
 import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity {
 
     private PopupWindow mPopupWindow;
+
+    public static void actionActivity(Context context){
+        Intent intent = new Intent(context, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        context.startActivity(intent);
+    }
 
     @OnClick(R.id.tv_select_language)
     public void toSelectLanguage() {
@@ -30,7 +43,10 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initView() {
-
+        TextView mTvApplicationName = findViewById(R.id.tv_application_name);
+        TextView mTvActivityName = findViewById(R.id.tv_activity_name);
+        mTvApplicationName.setText(AppApplication.getAppContext().getString(R.string.application_name));
+        mTvActivityName.setText(R.string.activity_name);
     }
 
     private void showSelectPop() {
@@ -98,16 +114,29 @@ public class MainActivity extends BaseActivity {
     }
 
     private void toSetLanguage(int type) {
-        boolean sameLanguage = I18NUtils.isSameLanguage(this, type);
-        if (!sameLanguage) {
-            I18NUtils.setLocale(this, type);
-            // 前面取系统语言时判断spType=0时取第一值，所以设置完语言后缓存type
-            I18NUtils.putLanguageType(this, type);
-            I18NUtils.toRestartMainActvity(this);
+        Locale locale;
+        Context context = AppApplication.getAppContext();
+        if (type == 0) {
+            locale = LanguageUtils.getSystemLocale();
+            LanguageUtils.saveAppLocaleLanguage(LanguageUtils.SYSTEM_LANGUAGE_TGA);
+        }  else if (type == 1) {
+            locale = Locale.US;
+            LanguageUtils.saveAppLocaleLanguage(locale.toLanguageTag());
+        }else if (type == 2) {
+            locale = Locale.SIMPLIFIED_CHINESE;
+            LanguageUtils.saveAppLocaleLanguage(locale.toLanguageTag());
+        }else if(type == 3){
+            locale = new Locale("th");
+            LanguageUtils.saveAppLocaleLanguage(locale.toLanguageTag());
         } else {
-            // 缓存用户此次选择的类型，可能出现type不同而locale一样的情况（如：系统默认泰语type = 0，而我选择的也是泰语type = 3）
-            I18NUtils.putLanguageType(this, type);
+            return;
         }
+        if (LanguageUtils.isSimpleLanguage(context, locale)) {
+            Toast.makeText(context, "选择的语言和当前语言相同", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        LanguageUtils.updateLanguage(context, locale);
+        MainActivity.actionActivity(context);
     }
 
 }

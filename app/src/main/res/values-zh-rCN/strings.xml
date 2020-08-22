@@ -8,4 +8,6 @@
     <string name="chinese">中文</string>
     <string name="please_select_app_language">请选择app语言</string>
     <string name="thai">泰语</string>
+    <string name="activity_name">活动名称</string>
+    <string name="application_name">应用名称</string>
 </resources>

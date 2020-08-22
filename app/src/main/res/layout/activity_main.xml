@@ -6,7 +6,17 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:text="@string/title"
+        android:id="@+id/tv_application_name"
+        android:textColor="#0BEAD5"
+        android:textSize="22sp"
+        android:text="@string/application_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tv_activity_name"
+        android:text="@string/activity_name"
+        android:layout_marginTop="20dp"
         android:textColor="#8149f0"
         android:textSize="22sp"
         android:layout_width="wrap_content"
