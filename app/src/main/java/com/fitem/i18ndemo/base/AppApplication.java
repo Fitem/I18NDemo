@@ -29,8 +29,7 @@ public class AppApplication extends Application {
         mApplication.registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle savedInstanceState) {
-                // 对Application和Activity更新语言上下文
-                LanguageUtils.applyAppLanguage(mApplication);
+                // 对Application和Activity更新上下文的语言环境
                 LanguageUtils.applyAppLanguage(activity);
             }
 

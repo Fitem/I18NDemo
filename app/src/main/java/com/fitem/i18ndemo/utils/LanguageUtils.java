@@ -1,5 +1,6 @@
 package com.fitem.i18ndemo.utils;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.ContextWrapper;
@@ -57,11 +58,12 @@ public class LanguageUtils {
     /**
      * 对Application上下文进行替换
      *
-     * @param context context
+     * @param activity activity
      */
-    public static void applyAppLanguage(@NonNull Context context) {
+    public static void applyAppLanguage(@NonNull Activity activity) {
         Locale appLocale = getCurrentAppLocale();
-        updateLanguage(context, appLocale);
+        updateLanguage(AppApplication.getAppContext(), appLocale);
+        updateLanguage(activity, appLocale);
     }
 
     /**
