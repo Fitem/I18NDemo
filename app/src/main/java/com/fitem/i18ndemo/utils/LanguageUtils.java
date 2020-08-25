@@ -6,11 +6,8 @@ import android.content.ContextWrapper;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.os.Build;
-import android.os.LocaleList;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
-import android.webkit.WebView;
 
 import androidx.annotation.NonNull;
 
@@ -28,34 +25,6 @@ import java.util.Locale;
 public class LanguageUtils {
 
     public static final String SYSTEM_LANGUAGE_TGA = "systemLanguageTag";
-
-    /**
-     * 设置App语言
-     *
-     * @param context 注意上下文需要使用application的上下文
-     * @param locale
-     */
-    public static void setAppLocale(Context context, @NonNull Locale locale) {
-        // Android9.0以上系统未做WebView适配，会报Crash：Using WebView from more
-        // than one process at once with the same data directory is not supported.
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
-            // 解决webview所在的activity语言没有切换问题
-            new WebView(context).destroy();
-        }
-        // 切换语言
-        Resources resources = context.getResources();
-        DisplayMetrics dm = resources.getDisplayMetrics();
-        Configuration config = resources.getConfiguration();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            config.setLocale(locale);
-            LocaleList localeList = new LocaleList(locale);
-            LocaleList.setDefault(localeList);
-            config.setLocales(localeList);
-        } else {
-            config.setLocale(locale);
-        }
-        resources.updateConfiguration(config, dm);
-    }
 
     /**
      * 更新该context的config语言配置，对于application进行反射更新
